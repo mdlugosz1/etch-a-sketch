@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Etch-a-sketch</title>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h1>Etch-a-sketch</h1>
+            <div class="blackboardcontainer">
+                <div class="blackboard-border left"></div>
+                <div class="blackboard-border right"></div>
+                <div class="blackboard-border top"></div>
+                <div class="blackboard-border bottom"></div>
+                <div class="grid"></div>
+            </div>
+
+            <div class="buttoncontainer">
+                <button class="color-picker">white</button>
+                <button class="color-picker">green</button>
+                <button class="color-picker">rainbow</button>
+                <button class="color-picker" id="clear">clear</button>
+                <button class="color-picker">paint style</button>
+            </div>
+            <div class="slidercontainer">
+                <input type="range" min='10' max='100' value='50' class='slider'>
+            </div>
+        </div>
+    </main>
+    <script src="scripts/scripts.js"></script>
+</body>
+</html>
