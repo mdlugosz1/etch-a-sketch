@@ -4,54 +4,56 @@ const input = document.querySelector('.slider');
 const buttons = document.querySelectorAll('.color-picker');
 const userPick = document.querySelector('#user-choice');
 
-createGrid(50);
+createGrid(25);
 
 function createGrid(size) {
+    const showSize = document.querySelector('p');
+    const dimension = size * size;
+    showSize.textContent = size + ' x ' + size;
     main.innerHTML = '';
-    const width = main.offsetWidth;
-    let dimension = size * size;
-    let divSize = width/size;
+    
     
     for (let i = 0; i < dimension; i++) {
         const item = document.createElement('div');
         main.appendChild(item);
     }
-    main.style.gridTemplateColumns = `repeat(${size}, ${divSize}px)`;
-    main.style.gridTemplateRows = `repeat(${size}, ${divSize}px)`;
+    main.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    main.style.gridTemplateRows = `repeat(${size}, 1fr)`;
     
     startDrawing();
 }
 
-function startDrawing(color) {
+function startDrawing(event) {
     const blackboard = main.querySelectorAll('div');
-    
+    const colourChoice = this.id;
+
     blackboard.forEach(item => {
-        item.addEventListener('mouseover', () => {
-            changeColor(item, color);
+        item.addEventListener('mouseenter', () => {
+            changeColor(colourChoice, item);
         });
-    })
+    });
 }
 
-function changeColor(div, color) {
-    switch(color) {
-        case 'green':
-            div.style.backgroundColor = 'green';
+function changeColor(colour, div) {
+    switch(colour) {
+        case 'eraser':
+            div.style.backgroundColor = 'transparent';
             break;
         case 'rainbow':
-            let randomColor = Math.floor(Math.random()*16777215).toString(16);
+            const randomColor = Math.floor(Math.random()*16777215).toString(16);
             div.style.backgroundColor = '#' + randomColor;
             break;
-        case 'white':
-            div.style.backgroundColor = 'white';
+        case 'user-choice':
+            const userColour = userPick.value;
+            div.style.backgroundColor = userColour;
             break;
         default:
-            let userColour = userPick.value;
-            div.style.backgroundColor = userColour;
+            div.style.backgroundColor = 'white';
             break;
     }
 }
 
 clear.addEventListener('click', () => {createGrid(input.value)});
 input.addEventListener('change', () => {createGrid(input.value)});
-buttons.forEach(button => button.addEventListener('click', ()=> {startDrawing(button.value)}));
-userPick.addEventListener('change', () =>{startDrawing(userPick.value)});
+buttons.forEach(button => button.addEventListener('click', startDrawing));
+userPick.addEventListener('change', startDrawing);

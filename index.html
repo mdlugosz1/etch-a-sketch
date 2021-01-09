@@ -4,26 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <title>Etch-a-sketch</title>
 </head>
 <body>
     <main>
         <div class="container">
             <h1>Etch-a-sketch</h1>
+            
             <div class="blackboardcontainer">
-                
                 <div class="grid"></div>
             </div>
 
             <div class="buttoncontainer">
-                <button class="color-picker" value="white">white</button>
-                <button class="color-picker" value='green'>green</button>
-                <button class="color-picker" value='rainbow'>rainbow</button>
+                <button class="color-picker" id="white">white</button>
+                <button class="color-picker" id='eraser'>eraser</button>
+                <button class="color-picker" id='rainbow'>rainbow</button>
                 <button class="color-picker" id="clear">clear</button>
-                <input type="color" id="user-choice" value="#FFFFFF">
             </div>
-            <div class="slidercontainer">
-                <input type="range" min='10' max='100' value='50' class='slider'>
+
+            <div class="labelcontainer">
+                <label for="user-choice" class="user-choice-label">Pick your own</label>
+                <input type="color" id="user-choice" value="#FFFFFF">
+                <label for="slider" class="slider-label">Blackboard size:</label>
+                <p></p>
+                <input type="range" min='10' max='100' value='50' class='slider' id='slider'>
             </div>
         </div>
     </main>
